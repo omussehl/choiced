@@ -12,7 +12,7 @@ export default function Navbar() {
    <div>
      <nav className="navbar navbar-expand-lg navbar-light bg-light">
        <NavLink className="navbar-brand" to="/">
-       <img style={{"width" : 25 + '%'}} src="https://d3cy9zhslanhfa.cloudfront.net/media/3800C044-6298-4575-A05D5C6B7623EE37/4B45D0EC-3482-4759-82DA37D8EA07D229/webimage-8A27671A-8A53-45DC-89D7BF8537F15A0D.png" alt=""></img>
+       <img style={{"width" : 10 + '%'}} src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="Netflix"></img>
        </NavLink>
        <button
          className="navbar-toggler"
@@ -30,7 +30,7 @@ export default function Navbar() {
          <ul className="navbar-nav ml-auto">
            <li className="nav-item">
              <NavLink className="nav-link" to="/create">
-               Create Record
+               Choiced: Let's find something to watch!
              </NavLink>
            </li>
          </ul>
