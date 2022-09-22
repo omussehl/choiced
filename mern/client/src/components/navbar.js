@@ -11,8 +11,8 @@ export default function Navbar() {
  return (
    <div>
      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-       <NavLink className="navbar-brand" to="/">
-       <img style={{"width" : 10 + '%'}} src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="Netflix"></img>
+       <NavLink className="navbar-brand" to="/">Choiced Logo Here, not Netflix
+       <img style={{"width" : 10 + '%'}} src="https://lh3.googleusercontent.com/jcbqFma-5e91cY9MlEasA-fvCRJK493MxphrqbBd8oS74FtYg00IXeOAn0ahsLprxIA=w300-rw" alt="Netflix"></img>
        </NavLink>
        <button
          className="navbar-toggler"
