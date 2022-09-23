@@ -1,6 +1,5 @@
 import React from "react";
 import CheckInlineExample from "./checkbox";
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
  
@@ -44,6 +43,7 @@ export default function Search() {
       <br></br>
       <h2>Streaming Service</h2>
       {streamingInput}
+      {CheckInlineExample}
       <h2>Type</h2>
       {typeInput}
       {searchButton}
