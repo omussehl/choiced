@@ -1,6 +1,35 @@
-import React from "react";
+// import React from "react";
+import React from "react"
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+const netflixTitles = ['Peaky Blinders', 'Breaking Bad', 'Stranger Things', 'Squid Games', 'The Witcher', 'Love Island', 'Naruto']
 
 // this should return a random index. 
-// will work to make this actually pull from my database soon
+function randomNetflixTitle() {
+  let ranTitle = netflixTitles[Math.floor(Math.random()*netflixTitles.length)]
+  return ranTitle
+}
 
-// db.mycoll.aggregate([{ $sample: { size: 1 } }])
+
+
+
+export default function Query() {
+
+  const showAlert = () => {
+    let popup = randomNetflixTitle()
+    alert(popup)
+    console.log(popup)
+  }
+
+
+  return (
+    <div>
+      <p>testing with a javascript function</p>
+      <button onClick={showAlert}>
+      Click Me
+    </button>
+    <p>Here we are testing for MongoDB connection</p>
+    </div>
+  )
+}

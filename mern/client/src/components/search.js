@@ -1,7 +1,6 @@
 import React from "react";
 import CheckInlineExample from "./checkbox";
 import Button from 'react-bootstrap/Button';
-
  
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
@@ -27,27 +26,36 @@ const typeInput = (
 )
 
 const searchButton = (
-  <Button as="input" type="submit" value="Submit"></Button>
+  <Button as="input" type="submit" value="Submit" onClick='alert'></Button>
 )
 
-const queryOutput = (
-  <p>query output test</p>
-)
 
-export default function Search() {
-    
+
+// this is a function component - and importantly returns JSX
+const Search = () => {
   return (
     <div>
-      {header}
-      {description}
-      <br></br>
-      <h2>Streaming Service</h2>
-      {streamingInput}
-      {CheckInlineExample}
-      <h2>Type</h2>
-      {typeInput}
-      {searchButton}
-      {queryOutput}
-    </div>
-  )
-}
+    {header}
+    {description}
+    <br></br>
+    <h2>Streaming Service</h2>
+    {streamingInput}
+    {CheckInlineExample}
+    <h2>Type</h2>
+    {typeInput}
+    {searchButton}
+  </div>
+    )
+};
+export default Search;
+
+
+// regular component example: 
+// class Search extends React.Component {render(<h1>Title</h>)} OR
+// This is another way to export the class - but keeping this here for reference. 
+// export default function Search() {    
+//   return (
+//     <div>
+//     </div>
+//   )
+// }

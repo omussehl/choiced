@@ -2,8 +2,9 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
  
 // We import all the components we need in our app
-import Navbar from "./components/navbar";
+import Navbar from "./components/navbar/navbar.js";
 import Search from "./components/search";
+import Query from "./components/query";
 
  
 const App = () => {
@@ -11,6 +12,8 @@ const App = () => {
    <div>
      <Navbar />
      <Search />
+     <Query/>
+
    </div>
  );
 };
