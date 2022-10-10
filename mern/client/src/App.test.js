@@ -1,15 +1,12 @@
-import React from "react";
-import { shallow, mount } from "enzyme";
-import Account from "./Account";
-import App from "./App";
-import toJson from "enzyme-to-json";
+import React from 'react';
+import App from './App'
+import { render, screen } from '@testing-library/react';
+ 
+// it('should render welcome text', async () => {
+//   render(<App />)
+//   expect(screen.getByText('Choiced')).toBeInTheDocument()
+// });
 
-it("renders without crashing", () => {
-  shallow(<App />);
-});
-
-it("renders Account header", () => {
-  const wrapper = shallow(<App />);
-  const welcome = <h1>Display Active Users Account Details</h1>;
-  expect(wrapper.contains(welcome)).toEqual(true);
+it('renders without crashing', () => {
+  
 });

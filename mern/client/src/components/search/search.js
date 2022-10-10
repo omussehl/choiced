@@ -1,5 +1,5 @@
 import React from "react";
-import CheckInlineExample from "./checkbox";
+import CheckInlineExample from "../checkbox";
 import Button from 'react-bootstrap/Button';
  
 // We import bootstrap to make our application look better.
