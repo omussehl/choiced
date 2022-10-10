@@ -11,11 +11,9 @@ function randomNetflixTitle() {
   return ranTitle
 }
 
+export{randomNetflixTitle};
 
-
-
-export default function Query() {
-
+const Query = () => {
   const showAlert = () => {
     let popup = randomNetflixTitle()
     alert(popup)
@@ -33,3 +31,26 @@ export default function Query() {
     </div>
   )
 }
+
+export default Query
+
+
+// export default function Query() {
+
+//   const showAlert = () => {
+//     let popup = randomNetflixTitle()
+//     alert(popup)
+//     console.log(popup)
+//   }
+
+
+//   return (
+//     <div>
+//       <p>testing with a javascript function</p>
+//       <button onClick={showAlert}>
+//       Click Me
+//     </button>
+//     <p>Here we are testing for MongoDB connection</p>
+//     </div>
+//   )
+// }
