@@ -1,18 +1,13 @@
-// currently this should return "Dick Johnson is Dead" the movie
-Media.find({show_id: 's1', type: "movie"}, (error, data) => {
-  if(error){
-    console.log(error)
-  }else{
-    console.log(data)
-  }
-});
+// Get the count of all users
+User.count().exec(function (err, count) {
 
-const getMedia = function(idGeneration, done) {
-  Media.find({show_id: 's1', type: "movie"}, (error, arrayOfResults) => {
-    if(error) {
-      console.log(error)
-    }else{
-      done(null, arrayOfResults)
-    }
-  })
-}
+  // Get a random entry
+  var random = Math.floor(Math.random() * count)
+
+  // Again query all users but only fetch one offset by our random #
+  User.findOne().skip(random).exec(
+    function (err, result) {
+      // Tada! random user
+      console.log(result) 
+    })
+})
