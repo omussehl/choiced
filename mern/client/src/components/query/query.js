@@ -1,56 +1,42 @@
 // import React from "react";
-import React from "react"
+import React, { useEffect } from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
+const netflixTitles = [
+  "Peaky Blinders",
+  "Breaking Bad",
+  "Stranger Things",
+  "Squid Games",
+  "The Witcher",
+  "Love Island",
+  "Naruto",
+];
 
-const netflixTitles = ['Peaky Blinders', 'Breaking Bad', 'Stranger Things', 'Squid Games', 'The Witcher', 'Love Island', 'Naruto']
-
-// this should return a random index. 
+// this should return a random index.
 function randomNetflixTitle() {
-  let ranTitle = netflixTitles[Math.floor(Math.random()*netflixTitles.length)]
-  return ranTitle
+  let ranTitle =
+    netflixTitles[Math.floor(Math.random() * netflixTitles.length)];
+  return ranTitle;
 }
 
-export{randomNetflixTitle};
+export { randomNetflixTitle };
 
-const Query = () => {
-  const showAlert = () => {
-    let popup = randomNetflixTitle()
-    alert(popup)
-    console.log(popup)
-  }
-
-
-  return (
-    <div>
-      <p>testing with a javascript function</p>
-      <button onClick={showAlert}>
-      Click Me
-    </button>
-    <p>Here we are testing for MongoDB connection</p>
-    </div>
-  )
-}
-
-export default Query
-
-
-// export default function Query() {
-
+// const Query = () => {
 //   const showAlert = () => {
-//     let popup = randomNetflixTitle()
-//     alert(popup)
-//     console.log(popup)
-//   }
-
+//     let popup = randomNetflixTitle();
+//     alert(popup);
+//     console.log(popup);
+//   };
 
 //   return (
 //     <div>
 //       <p>testing with a javascript function</p>
-//       <button onClick={showAlert}>
-//       Click Me
-//     </button>
-//     <p>Here we are testing for MongoDB connection</p>
+//       <button onClick={showAlert}>Click Me</button>
+//       <p>Here we are testing for MongoDB connection</p>
 //     </div>
-//   )
-// }
+//   );
+// };
+
+const Query = () => {};
+
+export default Query;

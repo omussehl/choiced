@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 // const { db } = require('./models/netflix');
 const Favorite = require("./models/favorites");
 const { Netflix } = require("./models/netflix");
+const { Hulu } = require("./models/netflix");
+const { Prime } = require("./models/netflix");
+const { Disney } = require("./models/netflix");
 
 mongoose
   .connect(
@@ -39,14 +42,5 @@ const getMedia = async (req, res, next) => {
   res.json(document);
 };
 
-// const getMedia = async (req, res, next) => {
-//   // find() is a mongoose function that
-//   const favorite = await Favorite.find({show_id: 's1', type: "Movie"})
-//   console.log(favorite)
-//   res.json(favorite)
-// }
-
 exports.addFavorites = addFavorites;
 exports.getMedia = getMedia;
-
-// Was able to create a schema very similar to the Netflix collection I have, however this created a "Netflixes" collection with no data. So I really just want to query my database....
