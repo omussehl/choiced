@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { Schema } = require('mongoose')
+const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
 const netflixSchema = new Schema({
   _id: String,
@@ -12,7 +12,7 @@ const netflixSchema = new Schema({
   rating: String,
   duration: String,
   listed_in: String,
-  description: String
-})
+  description: String,
+});
 
-module.exports.Netflix = mongoose.model('netflix', netflixSchema, 'netflix')
+module.exports.Netflix = mongoose.model("netflix", netflixSchema, "netflix");

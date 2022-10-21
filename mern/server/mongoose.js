@@ -42,5 +42,15 @@ const getMedia = async (req, res, next) => {
   res.json(document);
 };
 
+// // this is a get request for the data
+// const getMedia = async (req, res, next) => {
+//   // Get the count of all users
+//   const count = await Prime.countDocuments();
+//   const random = Math.floor(Math.random() * count);
+//   const document = await Prime.findOne().skip(random);
+
+//   res.json(document);
+// };
+
 exports.addFavorites = addFavorites;
 exports.getMedia = getMedia;

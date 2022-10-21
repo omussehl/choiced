@@ -1,11 +1,12 @@
 // useState is a hook, and we use curly braces to destructure it
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { isEmpty } from "lodash";
 
 const ButtonSearch = () => {
   // this is the initial value
-  const document = useRef(0);
+  const document = useRef();
 
+  // this function fetches data from the backend, returns as a json file, and saves it to my document file
   const netflix = () => {
     fetch("http://localhost:8080/netflix")
       .then((res) => {
@@ -38,11 +39,11 @@ const ButtonSearch = () => {
       <button onClick={handleClick}>Search</button>
       {!isEmpty(media) ? (
         <p>
-          Your random result is: {media.title}
+          Your random result is: <b>{media.title}</b>
           <br />
           {media.title} is a {media.type} that came out in {media.releaseYear}.
           It is {media.rating} rated, and is {media.duration} long. <br />
-          About: {media.description}
+          About: <i>{media.description}</i>
         </p>
       ) : null}
     </div>
