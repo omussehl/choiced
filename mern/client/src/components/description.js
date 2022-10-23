@@ -1,11 +1,7 @@
 import React from "react";
-import CheckInlineExample from "./checkbox";
-import Button from "react-bootstrap/Button";
 
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
-
-const header = <h1>Welcome to Choiced</h1>;
 
 const description = (
   <p>
@@ -16,32 +12,31 @@ const description = (
   </p>
 );
 
-const streamingInput = <p>testing</p>;
-
-const typeInput = <p>type input test</p>;
-
-const searchButton = (
-  <Button as="input" type="submit" value="Submit" onClick="alert"></Button>
-);
-
 // this is a function component - and importantly returns JSX
-const Search = () => {
+const Description = () => {
   return (
     <div>
-      {header}
+      <h1>Welcome to Choiced</h1>
       {description}
-      <br></br>
-      <h2>Streaming Service</h2>
-      {streamingInput}
-      {CheckInlineExample}
-      <h2>Type</h2>
-      {typeInput}
-      {searchButton}
-      <br></br>
+      <h3>Streaming Service</h3>
+      <div>
+        <i>
+          Please select your streaming services you would like to search from
+        </i>
+        <p>netflix - prime video - disney+ - Hulu</p>
+      </div>
+      <h3>Type</h3>
+      <div>
+        <i>
+          Please select whether you would like to search for Movies, TV shows,
+          or both.
+        </i>
+        <p>Movie - TV Show</p>
+      </div>
     </div>
   );
 };
-export default Search;
+export default Description;
 
 // regular component example:
 // class Search extends React.Component {render(<h1>Title</h>)} OR

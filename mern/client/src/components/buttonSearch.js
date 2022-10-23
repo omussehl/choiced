@@ -19,7 +19,7 @@ const ButtonSearch = () => {
 
   const [media, setMedia] = useState(null);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     // the new value when clicked
     netflix();
     setMedia({
@@ -33,19 +33,26 @@ const ButtonSearch = () => {
     console.log(document.current);
   };
 
-  return (
-    <div className="button">
-      <h2>Click search</h2>
-      <button onClick={handleClick}>Search</button>
+  let text = (
+    <div>
       {!isEmpty(media) ? (
         <p>
-          Your random result is: <b>{media.title}</b>
+          Your random result is: {media.title}
           <br />
           {media.title} is a {media.type} that came out in {media.releaseYear}.
           It is {media.rating} rated, and is {media.duration} long. <br />
           About: <i>{media.description}</i>
         </p>
       ) : null}
+    </div>
+  );
+
+  return (
+    <div className="search">
+      <button onClick={handleClick} type="submit">
+        Search
+      </button>
+      <div role="textbox">{text}</div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 // this file will test the query and make sure it is returning a random value
-import { randomNetflixTitle } from ".";
+import { randomNetflixTitle } from "../query";
 
 // testing the query I have created along with the associated array
 test("testing out a basic test for this Netflix query", async () => {
