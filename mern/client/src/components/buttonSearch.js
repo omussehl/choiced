@@ -33,36 +33,26 @@ const ButtonSearch = () => {
     console.log(document.current);
   };
 
-  let text = (
-    <div>
-      {!isEmpty(media) ? (
-        <p>
-          Your random result is: {media.title}
-          <br />
-          {media.title} is a {media.type} that came out in {media.releaseYear}.
-          It is {media.rating} rated, and is {media.duration} long. <br />
-          About: <i>{media.description}</i>
-        </p>
-      ) : null}
-    </div>
-  );
-
   return (
     <div className="search">
       <button onClick={handleClick} type="submit">
         Search
       </button>
-      <div role="textbox">{text}</div>
+      <div role="textbox">
+        {!isEmpty(media) ? (
+          <p>
+            Your random result is: {media.title}
+            <br />
+            {media.title} is a {media.type} that came out in {media.releaseYear}
+            . It is {media.rating} rated, and is {media.duration} long. <br />
+            About: <i>{media.description}</i>
+          </p>
+        ) : (
+          <p>click the search button above</p>
+        )}
+      </div>
     </div>
   );
 };
 
 export default ButtonSearch;
-
-// useEffect(() => {
-//   fetch("http://localhost:8080/netflix")
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .then((data) => (document.current = data));
-// }, []);

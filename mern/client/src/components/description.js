@@ -1,8 +1,5 @@
 import React from "react";
 
-// We import bootstrap to make our application look better.
-import "bootstrap/dist/css/bootstrap.css";
-
 const description = (
   <p>
     Choiced is a site that helps with some of the most difficult decisions one
@@ -16,7 +13,7 @@ const description = (
 const Description = () => {
   return (
     <div>
-      <h1>Welcome to Choiced</h1>
+      <h1 className="border-lime-400 p-1 m-2">Welcome to Choiced</h1>
       {description}
       <h3>Streaming Service</h3>
       <div>
@@ -37,13 +34,3 @@ const Description = () => {
   );
 };
 export default Description;
-
-// regular component example:
-// class Search extends React.Component {render(<h1>Title</h>)} OR
-// This is another way to export the class - but keeping this here for reference.
-// export default function Search() {
-//   return (
-//     <div>
-//     </div>
-//   )
-// }
