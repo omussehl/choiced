@@ -34,14 +34,18 @@ const ButtonSearch = () => {
   };
 
   return (
-    <div className="search">
-      <button onClick={handleClick} type="submit">
+    <div className="search p-3">
+      <button
+        onClick={handleClick}
+        type="submit"
+        className="bg-rmetalic p-2 rounded-md text-white mb-2"
+      >
         Search
       </button>
       <div role="textbox">
         {!isEmpty(media) ? (
-          <p>
-            Your random result is: {media.title}
+          <p className="shadow-md rounded-md p-3 bg-white">
+            Your random result is: <b>{media.title}</b>
             <br />
             {media.title} is a {media.type} that came out in {media.releaseYear}
             . It is {media.rating} rated, and is {media.duration} long. <br />
