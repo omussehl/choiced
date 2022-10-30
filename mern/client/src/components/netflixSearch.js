@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import { isEmpty } from "lodash";
 
-const ButtonSearch = () => {
+const NetflixSearch = () => {
   // this is the initial value
   const document = useRef();
 
@@ -34,7 +34,17 @@ const ButtonSearch = () => {
   };
 
   return (
-    <div className="search p-3">
+    <div className="p-3">
+      <h2 className="text-umber">Netflix</h2>
+      <p>The page searches Netflix TV Shows and Movies!</p>
+      <h3 className="text-umber">Type</h3>
+      <div>
+        <i className="">
+          Please select whether you would like to search for Movies, TV shows,
+          or both.
+        </i>
+        <p className="">Movie - TV Show</p>
+      </div>
       <button
         onClick={handleClick}
         type="submit"
@@ -59,4 +69,4 @@ const ButtonSearch = () => {
   );
 };
 
-export default ButtonSearch;
+export default NetflixSearch;

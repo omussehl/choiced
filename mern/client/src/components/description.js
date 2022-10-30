@@ -22,14 +22,6 @@ const Description = () => {
         </i>
         <p className="text-secondary">netflix - prime video - disney+ - Hulu</p>
       </div>
-      <h3 className="text-umber">Type</h3>
-      <div>
-        <i className="">
-          Please select whether you would like to search for Movies, TV shows,
-          or both.
-        </i>
-        <p className="">Movie - TV Show</p>
-      </div>
     </div>
   );
 };

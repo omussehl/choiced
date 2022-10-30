@@ -5,8 +5,8 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 const navigation = [
   { name: "Netflix", href: "/netflix", current: true },
   { name: "Hulu", href: "/hulu", current: false },
-  { name: "Disney+", href: "/disney+", current: false },
-  { name: "Prime Video", href: "/prime video", current: false },
+  { name: "Disney+", href: "/disney", current: false },
+  { name: "Prime Video", href: "/prime", current: false },
 ];
 
 function classNames(...classes) {
@@ -42,7 +42,7 @@ export default function Navbar() {
                 </div>
                 <div className="flex space-x-4 text-cultured text-xl mt-1 ml-2">
                   <a
-                    href="/home"
+                    href="/"
                     className=" text-cultured hover:text-cultured no-underline font-semibold"
                   >
                     Choiced
