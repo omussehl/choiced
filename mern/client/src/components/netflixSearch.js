@@ -21,7 +21,6 @@ const NetflixSearch = () => {
 
   const handleClick = () => {
     // the new value when clicked
-    netflix();
     setMedia({
       title: document.current.title,
       type: document.current.type,

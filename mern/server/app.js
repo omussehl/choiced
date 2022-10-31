@@ -1,9 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-// const mongoChoiced = require('./mongoose');
 const app = express();
-const { addFavorites, getMedia } = require("./mongoose");
+const {
+  getNetflixMedia,
+  getHuluMedia,
+  getPrimeMedia,
+  getDisneyMedia,
+} = require("./mongoose");
 
 // cors restricts requests from unknown locations - server accepts requests from this location (frontend)
 app.use(
@@ -14,9 +18,12 @@ app.use(
 // these are the requests that express can do
 app.use(bodyParser.json());
 
-app.post("/netflix", addFavorites);
+// app.post("/netflix", addFavorites);
 
-app.get("/netflix", getMedia);
+app.get("/netflix", getNetflixMedia);
+app.get("/hulu", getHuluMedia);
+app.get("/disney", getDisneyMedia);
+app.get("/prime", getPrimeMedia);
 
 // the server that localhost will run on
 app.listen(8080);

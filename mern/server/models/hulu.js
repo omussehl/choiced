@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
-const netflixSchema = new Schema({
+const huluSchema = new Schema({
   _id: String,
   show_id: String,
   type: String,
@@ -15,4 +15,4 @@ const netflixSchema = new Schema({
   description: String,
 });
 
-module.exports.Netflix = mongoose.model("hulu", netflixSchema, "hulu");
+module.exports.Hulu = mongoose.model("hulu", huluSchema, "hulu");

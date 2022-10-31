@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
-const netflixSchema = new Schema({
+const PrimeSchema = new Schema({
   _id: String,
   show_id: String,
   type: String,
@@ -15,8 +15,8 @@ const netflixSchema = new Schema({
   description: String,
 });
 
-module.exports.Netflix = mongoose.model(
+module.exports.Prime = mongoose.model(
   "prime video",
-  netflixSchema,
+  PrimeSchema,
   "prime video"
 );

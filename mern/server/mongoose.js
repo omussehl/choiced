@@ -1,13 +1,9 @@
-const { ObjectID, Int32 } = require("bson");
 const mongoose = require("mongoose");
 
-// struggling to get this db to connect to the correct db
-// const { db } = require('./models/netflix');
-const Favorite = require("./models/favorites");
 const { Netflix } = require("./models/netflix");
-const { Hulu } = require("./models/netflix");
-const { Prime } = require("./models/netflix");
-const { Disney } = require("./models/netflix");
+const { Hulu } = require("./models/hulu");
+const { Prime } = require("./models/prime");
+const { Disney } = require("./models/disney");
 
 mongoose
   .connect(
@@ -20,20 +16,8 @@ mongoose
     console.log("Connection failed!");
   });
 
-// this is code if I were to add content to mongo
-const addFavorites = async (req, res, next) => {
-  const newFavorite = new Favorite({
-    type: req.body.type,
-    title: req.body.title,
-  });
-  // this is an asynchronous task
-  const result = await newFavorite.save();
-  console.log(typeof newFavorite._id);
-  res.json(result);
-};
-
 // this is a get request for the data
-const getMedia = async (req, res, next) => {
+const getNetflixMedia = async (req, res, next) => {
   // Get the count of all users
   const count = await Netflix.countDocuments();
   const random = Math.floor(Math.random() * count);
@@ -42,15 +26,34 @@ const getMedia = async (req, res, next) => {
   res.json(document);
 };
 
-// // this is a get request for the data
-// const getMedia = async (req, res, next) => {
-//   // Get the count of all users
-//   const count = await Prime.countDocuments();
-//   const random = Math.floor(Math.random() * count);
-//   const document = await Prime.findOne().skip(random);
+const getHuluMedia = async (req, res, next) => {
+  // Get the count of all users
+  const count = await Hulu.countDocuments();
+  const random = Math.floor(Math.random() * count);
+  const document = await Hulu.findOne().skip(random);
 
-//   res.json(document);
-// };
+  res.json(document);
+};
 
-exports.addFavorites = addFavorites;
-exports.getMedia = getMedia;
+const getPrimeMedia = async (req, res, next) => {
+  // Get the count of all users
+  const count = await Prime.countDocuments();
+  const random = Math.floor(Math.random() * count);
+  const document = await Prime.findOne().skip(random);
+
+  res.json(document);
+};
+
+const getDisneyMedia = async (req, res, next) => {
+  // Get the count of all users
+  const count = await Disney.countDocuments();
+  const random = Math.floor(Math.random() * count);
+  const document = await Disney.findOne().skip(random);
+
+  res.json(document);
+};
+
+exports.getDisneyMedia = getDisneyMedia;
+exports.getPrimeMedia = getPrimeMedia;
+exports.getHuluMedia = getHuluMedia;
+exports.getNetflixMedia = getNetflixMedia;
