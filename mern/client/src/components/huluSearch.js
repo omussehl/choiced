@@ -5,30 +5,29 @@ import { isEmpty } from "lodash";
 const HuluSearch = () => {
   // this is the initial value
   const document = useRef();
+  const [media, setMedia] = useState(null);
 
   // this function fetches data from the backend, returns as a json file, and saves it to my document file
-  const hulu = () => {
-    fetch("http://localhost:8080/hulu")
+  const hulu = async () => {
+    await fetch("http://localhost:8080/hulu")
       .then((res) => {
         return res.json();
       })
-      .then((data) => (document.current = data));
+      .then((data) => {
+        console.log(data);
+        setMedia({
+          title: data.title,
+          type: data.type,
+          releaseYear: data.release_year,
+          rating: data.rating,
+          duration: data.duration,
+          description: data.description,
+        });
+      });
   };
 
-  hulu();
-
-  const [media, setMedia] = useState(null);
-
-  const handleClick = () => {
-    setMedia({
-      title: document.current.title,
-      type: document.current.type,
-      releaseYear: document.current.release_year,
-      rating: document.current.rating,
-      duration: document.current.duration,
-      description: document.current.description,
-    });
-    console.log(document.current);
+  const handleClick = async () => {
+    hulu();
   };
 
   return (

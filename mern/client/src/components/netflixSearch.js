@@ -18,6 +18,11 @@ const NetflixSearch = () => {
   netflix();
 
   const [media, setMedia] = useState(null);
+  const [type, setType] = useState("all");
+
+  const handleInputChange = (e) => {
+    setType(e.target.value);
+  };
 
   const handleClick = () => {
     // the new value when clicked
@@ -42,6 +47,38 @@ const NetflixSearch = () => {
           Please select whether you would like to search for Movies, TV shows,
           or both.
         </i>
+        <div className="flex flex-col p-1 ">
+          <label>
+            TV-Shows
+            <input
+              type="radio"
+              value="TV-Show"
+              checked={type === "tv"}
+              name="Tv Shows"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Movies
+            <input
+              type="radio"
+              value="movie"
+              checked={type === "movie"}
+              name="Movie"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Both
+            <input
+              type="radio"
+              value="all"
+              checked={type === "all"}
+              name="All"
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
         <p className="">Movie - TV Show</p>
       </div>
       <button

@@ -9,7 +9,7 @@ test("check counter", () => {
   expect(screen.getByText("Welcome to Choiced")).toBeInTheDocument();
   expect(
     screen.getByText(
-      "Choiced is a site that helps with some of the most difficult decisions one can have, such as deciding what to watch. There are so many options on eaching streaming service, and we want to make this as frictionless as possible."
+      "Choiced is a site that helps with some of the most difficult decisions one can have, such as deciding what to watch. There are so many options on each streaming service, and we want to make this as frictionless as possible."
     )
   ).toBeInTheDocument();
 });

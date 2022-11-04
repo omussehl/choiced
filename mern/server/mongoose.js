@@ -30,7 +30,7 @@ const getHuluMedia = async (req, res, next) => {
   // Get the count of all users
   const count = await Hulu.countDocuments();
   const random = Math.floor(Math.random() * count);
-  const document = await Hulu.findOne().skip(random);
+  const document = await Hulu.findOne({ type: "Movie" }).skip(random);
 
   res.json(document);
 };
