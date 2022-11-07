@@ -1,13 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-
-const navigation = [
-  { name: "Netflix", href: "/netflix", current: true },
-  { name: "Hulu", href: "/hulu", current: false },
-  { name: "Disney+", href: "/disney", current: false },
-  { name: "Prime Video", href: "/prime", current: false },
-];
+import { NavLink } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -50,22 +44,46 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
-                    {/* map uses the array to create different headers */}
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-umber text-cultured hover:text-bone"
-                            : "text-cultured hover:bg-umber hover:text-bone",
-                          "px-3 py-2 rounded-md text-sm font-medium no-underline"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    <NavLink
+                      to="/netflix"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "link-active bg-umber text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                          : "link text-cultured hover:bg-umber hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                      }
+                    >
+                      Netflix
+                    </NavLink>
+                    <NavLink
+                      to="/hulu"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "link-active bg-umber text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline "
+                          : "link text-cultured hover:bg-umber hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                      }
+                    >
+                      Hulu
+                    </NavLink>
+                    <NavLink
+                      to="/disney"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "link-active bg-umber text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline "
+                          : "link text-cultured hover:bg-umber hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                      }
+                    >
+                      Disney+
+                    </NavLink>
+                    <NavLink
+                      to="/prime"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "link-active bg-umber text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                          : "link text-cultured hover:bg-umber hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                      }
+                    >
+                      Prime Video
+                    </NavLink>
                   </div>
                 </div>
               </div>
@@ -137,27 +155,6 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-
-          <Disclosure.Panel className="sm:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-umber text-cream"
-                      : "text-cream hover:bg-umber hover:text-gycrayola",
-                    "px-3 py-2 rounded-md text-sm font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
-            </div>
-          </Disclosure.Panel>
         </>
       )}
     </Disclosure>

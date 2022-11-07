@@ -52,7 +52,7 @@ const NetflixSearch = () => {
             TV-Shows
             <input
               type="radio"
-              value="TV-Show"
+              value="tv"
               checked={type === "tv"}
               name="Tv Shows"
               onChange={handleInputChange}

@@ -4,7 +4,6 @@ import { isEmpty } from "lodash";
 
 const HuluSearch = () => {
   // this is the initial value
-  const document = useRef();
   const [media, setMedia] = useState(null);
 
   // this function fetches data from the backend, returns as a json file, and saves it to my document file
@@ -15,13 +14,14 @@ const HuluSearch = () => {
       })
       .then((data) => {
         console.log(data);
+        const randomCount = Math.floor(Math.random() * data.length);
         setMedia({
-          title: data.title,
-          type: data.type,
-          releaseYear: data.release_year,
-          rating: data.rating,
-          duration: data.duration,
-          description: data.description,
+          title: data[randomCount].title,
+          type: data[randomCount].type,
+          releaseYear: data[randomCount].release_year,
+          rating: data[randomCount].rating,
+          duration: data[randomCount].duration,
+          description: data[randomCount].description,
         });
       });
   };

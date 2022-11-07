@@ -14,4 +14,10 @@ describe("my test for ButtonSearch", () => {
     // text should contain the word "About:" when rendered
     expect(screen.getByText(/click/)).toBeInTheDocument();
   });
+  test("make sure text rendered", async () => {
+    render(<NetflixSearch />);
+
+    expect(screen.getByText("Netflix")).toBeInTheDocument();
+    expect(screen.getByText("Type")).toBeInTheDocument();
+  });
 });
