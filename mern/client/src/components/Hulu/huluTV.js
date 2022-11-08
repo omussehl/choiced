@@ -1,20 +1,20 @@
 // useState is a hook, and we use curly braces to destructure it
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { isEmpty } from "lodash";
 
-const HuluSearch = () => {
+const HuluTV = () => {
   // this is the initial value
   const [media, setMedia] = useState(null);
 
   // this function fetches data from the backend, returns as a json file, and saves it to my document file
   const hulu = async () => {
-    await fetch("http://localhost:8080/hulu")
+    await fetch("http://localhost:8080/hulu/tv")
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         const randomCount = Math.floor(Math.random() * data.length);
+        console.log(data[randomCount]);
         setMedia({
           title: data[randomCount].title,
           type: data[randomCount].type,
@@ -30,9 +30,11 @@ const HuluSearch = () => {
     hulu();
   };
 
+  // this is only displaying hulu not hulutTV
+
   return (
     <div className="p-3">
-      <h2 className="text-umber">Hulu</h2>
+      <h2 className="text-umber">Hulu TV</h2>
       <p>The page searches Hulu TV Shows and Movies!</p>
       <h3 className="text-umber">Type</h3>
       <div>
@@ -66,4 +68,4 @@ const HuluSearch = () => {
   );
 };
 
-export default HuluSearch;
+export default HuluTV;

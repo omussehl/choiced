@@ -79,12 +79,11 @@ const NetflixSearch = () => {
             />
           </label>
         </div>
-        <p className="">Movie - TV Show</p>
       </div>
       <button
         onClick={handleClick}
         type="submit"
-        className="bg-rmetalic p-2 rounded-md text-white mb-2"
+        className="bg-rmetalic p-2 rounded-md text-white mb-2 mt-2"
       >
         Search
       </button>

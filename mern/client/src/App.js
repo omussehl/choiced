@@ -8,8 +8,9 @@ import Description from "./components/description";
 import Navbar from "./components/navbar";
 import NetflixSearch from "./components/netflixSearch";
 import DisneySearch from "./components/disneySearch";
-import HuluSearch from "./components/huluSearch";
+import HuluSearch from "./components/Hulu/huluSearch";
 import PrimeSearch from "./components/primeVideoSearch";
+import HuluTV from "./components/Hulu/huluTV";
 
 const App = () => {
   return (
@@ -19,7 +20,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Description />} />
           <Route path="/netflix" element={<NetflixSearch />} />
-          <Route path="/hulu" element={<HuluSearch />} />
+          <Route path="/hulu" element={<HuluSearch />}>
+            <Route path="/hulutv" element={<HuluTV />} />
+          </Route>
           <Route path="/disney" element={<DisneySearch />} />
           <Route path="/prime" element={<PrimeSearch />} />
         </Routes>

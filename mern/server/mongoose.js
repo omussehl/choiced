@@ -18,16 +18,29 @@ mongoose
 
 // this is a get request for the data
 const getNetflixMedia = async (req, res, next) => {
-  // Get the count of all users
-  const count = await Netflix.countDocuments();
-  const random = Math.floor(Math.random() * count);
-  const document = await Netflix.findOne().skip(random);
+  const document = await Netflix.find({ type: "TV Show" });
+
+  res.json(document);
+};
+
+const getHuluMovie = async (req, res, next) => {
+  const document = await Hulu.find();
+
+  res.json(document);
+};
+
+const getHuluTV = async (req, res, next) => {
+  const document = await Hulu.find({ type: "TV Show" });
 
   res.json(document);
 };
 
 const getHuluMedia = async (req, res, next) => {
-  const document = await Hulu.find({ type: "Movie" });
+  // here we are able to find the TV show and with release year greater than 2019, could do gte to be greater than equal to
+  const document = await Hulu.find({
+    type: "TV Show",
+    release_year: { $gt: 2019 },
+  });
 
   res.json(document);
 };
@@ -52,5 +65,9 @@ const getDisneyMedia = async (req, res, next) => {
 
 exports.getDisneyMedia = getDisneyMedia;
 exports.getPrimeMedia = getPrimeMedia;
+
 exports.getHuluMedia = getHuluMedia;
+exports.getHuluMovie = getHuluMovie;
+exports.getHuluTV = getHuluTV;
+
 exports.getNetflixMedia = getNetflixMedia;
