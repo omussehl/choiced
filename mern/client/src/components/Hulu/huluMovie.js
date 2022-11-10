@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { isEmpty } from "lodash";
 
-const HuluSearch = () => {
+const HuluMovie = () => {
   // this is the initial value
   const [media, setMedia] = useState(null);
 
@@ -13,8 +13,9 @@ const HuluSearch = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         const randomCount = Math.floor(Math.random() * data.length);
+        console.log(data[randomCount]);
+        console.log(data.length);
         setMedia({
           title: data[randomCount].title,
           type: data[randomCount].type,
@@ -31,17 +32,8 @@ const HuluSearch = () => {
   };
 
   return (
-    <div className="p-3">
-      <h2 className="text-umber">Hulu</h2>
-      <p>The page searches Hulu TV Shows and Movies!</p>
-      <h3 className="text-umber">Type</h3>
-      <div>
-        <i className="">
-          Please select whether you would like to search for Movies, TV shows,
-          or both.
-        </i>
-        <p className="">Movie - TV Show</p>
-      </div>
+    <div>
+      <h3 className="text-umber">Now search for your random Hulu Movie</h3>
       <button
         onClick={handleClick}
         type="submit"
@@ -59,11 +51,11 @@ const HuluSearch = () => {
             About: <i>{media.description}</i>
           </p>
         ) : (
-          <p>click the search button above</p>
+          <p></p>
         )}
       </div>
     </div>
   );
 };
 
-export default HuluSearch;
+export default HuluMovie;

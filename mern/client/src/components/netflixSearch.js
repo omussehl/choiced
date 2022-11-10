@@ -97,7 +97,7 @@ const NetflixSearch = () => {
             About: <i>{media.description}</i>
           </p>
         ) : (
-          <p>click the search button above</p>
+          <p></p>
         )}
       </div>
     </div>

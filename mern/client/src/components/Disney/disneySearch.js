@@ -2,22 +2,22 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-const HuluSearch = () => {
+const DisneySearch = () => {
   return (
     <div className="p-3">
-      <h2 className="text-umber">Hulu</h2>
-      <p>The page searches Hulu TV Shows and Movies!</p>
+      <h2 className="text-umber">Disney+</h2>
+      <p>The page searches Disney+ TV Shows and Movies!</p>
       <h3 className="text-umber">Type</h3>
       <i>Please select from the following:</i>
       <div>
         <li className="text-umber hover:text-sage ">
-          <a href="/hulu/movie">Movie</a>
+          <a href="/disney/movie">Movie</a>
         </li>
         <li className="text-umber hover:text-sage ">
-          <a href="/hulu/tv">TV Show</a>
+          <a href="/disney/tv">TV Show</a>
         </li>
         <li className="text-umber hover:text-sage ">
-          <a href="/hulu/both">Both</a>
+          <a href="/disney/both">Both</a>
         </li>
       </div>
 
@@ -26,4 +26,4 @@ const HuluSearch = () => {
   );
 };
 
-export default HuluSearch;
+export default DisneySearch;

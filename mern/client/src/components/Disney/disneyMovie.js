@@ -2,13 +2,13 @@
 import React, { useState } from "react";
 import { isEmpty } from "lodash";
 
-const HuluTV = () => {
+const DisneyMovie = () => {
   // this is the initial value
   const [media, setMedia] = useState(null);
 
   // this function fetches data from the backend, returns as a json file, and saves it to my document file
   const hulu = async () => {
-    await fetch("http://localhost:8080/hulu/tv")
+    await fetch("http://localhost:8080/disney/movie")
       .then((res) => {
         return res.json();
       })
@@ -31,11 +31,9 @@ const HuluTV = () => {
     hulu();
   };
 
-  // this is only displaying hulu not hulutTV
-
   return (
     <div>
-      <h3 className="text-umber">Now search for your random Hulu TV show</h3>
+      <h3 className="text-umber">Now search for your random Disney+ Movie</h3>
       <button
         onClick={handleClick}
         type="submit"
@@ -60,4 +58,4 @@ const HuluTV = () => {
   );
 };
 
-export default HuluTV;
+export default DisneyMovie;

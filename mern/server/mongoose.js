@@ -16,15 +16,26 @@ mongoose
     console.log("Connection failed!");
   });
 
-// this is a get request for the data
+// These are get request for the data
+// Netflix functions:
 const getNetflixMedia = async (req, res, next) => {
-  const document = await Netflix.find({ type: "TV Show" });
+  const document = await Netflix.find();
+
+  res.json(document);
+};
+
+// Hulu Functions:
+const getHuluMedia = async (req, res, next) => {
+  // Get the count of all users
+  const count = await Hulu.countDocuments();
+  const random = Math.floor(Math.random() * count);
+  const document = await Hulu.findOne().skip(random);
 
   res.json(document);
 };
 
 const getHuluMovie = async (req, res, next) => {
-  const document = await Hulu.find();
+  const document = await Hulu.find({ type: "Movie" });
 
   res.json(document);
 };
@@ -35,16 +46,7 @@ const getHuluTV = async (req, res, next) => {
   res.json(document);
 };
 
-const getHuluMedia = async (req, res, next) => {
-  // here we are able to find the TV show and with release year greater than 2019, could do gte to be greater than equal to
-  const document = await Hulu.find({
-    type: "TV Show",
-    release_year: { $gt: 2019 },
-  });
-
-  res.json(document);
-};
-
+// Prime functions:
 const getPrimeMedia = async (req, res, next) => {
   // Get the count of all users
   const count = await Prime.countDocuments();
@@ -54,6 +56,19 @@ const getPrimeMedia = async (req, res, next) => {
   res.json(document);
 };
 
+const getPrimeMovie = async (req, res, next) => {
+  const document = await Prime.find({ type: "Movie" });
+
+  res.json(document);
+};
+
+const getPrimeTV = async (req, res, next) => {
+  const document = await Prime.find({ type: "TV Show" });
+
+  res.json(document);
+};
+
+// Disney Functions:
 const getDisneyMedia = async (req, res, next) => {
   // Get the count of all users
   const count = await Disney.countDocuments();
@@ -63,8 +78,26 @@ const getDisneyMedia = async (req, res, next) => {
   res.json(document);
 };
 
+const getDisneyMovie = async (req, res, next) => {
+  const document = await Disney.find({ type: "Movie" });
+
+  res.json(document);
+};
+
+const getDisneyTV = async (req, res, next) => {
+  const document = await Disney.find({ type: "TV Show" });
+
+  res.json(document);
+};
+
+// export the following
 exports.getDisneyMedia = getDisneyMedia;
+exports.getDisneyMovie = getDisneyMovie;
+exports.getDisneyTV = getDisneyTV;
+
 exports.getPrimeMedia = getPrimeMedia;
+exports.getPrimeMovie = getPrimeMovie;
+exports.getPrimeTV = getPrimeTV;
 
 exports.getHuluMedia = getHuluMedia;
 exports.getHuluMovie = getHuluMovie;

@@ -9,6 +9,10 @@ const {
   getDisneyMedia,
   getHuluMovie,
   getHuluTV,
+  getDisneyMovie,
+  getDisneyTV,
+  getPrimeMovie,
+  getPrimeTV,
 } = require("./mongoose");
 
 // cors restricts requests from unknown locations - server accepts requests from this location (frontend)
@@ -20,16 +24,20 @@ app.use(
 // these are the requests that express can do
 app.use(bodyParser.json());
 
-// app.post("/netflix", addFavorites);
-
+// netflix
 app.get("/netflix", getNetflixMedia);
-
+// hulu
 app.get("/hulu", getHuluMedia);
 app.get("/hulu/movie", getHuluMovie);
 app.get("/hulu/tv", getHuluTV);
-
+// disney
 app.get("/disney", getDisneyMedia);
+app.get("/disney/movie", getDisneyMovie);
+app.get("/disney/tv", getDisneyTV);
+// prime
 app.get("/prime", getPrimeMedia);
+app.get("/prime/movie", getPrimeMovie);
+app.get("/prime/tv", getPrimeTV);
 
 // the server that localhost will run on
 app.listen(8080);
