@@ -2,27 +2,25 @@
 import React, { useState } from "react";
 import { isEmpty } from "lodash";
 
-const PrimeTV = () => {
+const NetflixBoth = () => {
   // this is the initial value
   const [media, setMedia] = useState(null);
 
   // this function fetches data from the backend, returns as a json file, and saves it to my document file
   const hulu = async () => {
-    await fetch("http://localhost:8080/prime/tv")
+    await fetch("http://localhost:8080/netflix")
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        const randomCount = Math.floor(Math.random() * data.length);
-        console.log(data[randomCount]);
-        console.log(data.length);
+        console.log(data);
         setMedia({
-          title: data[randomCount].title,
-          type: data[randomCount].type,
-          releaseYear: data[randomCount].release_year,
-          rating: data[randomCount].rating,
-          duration: data[randomCount].duration,
-          description: data[randomCount].description,
+          title: data.title,
+          type: data.type,
+          releaseYear: data.release_year,
+          rating: data.rating,
+          duration: data.duration,
+          description: data.description,
         });
       });
   };
@@ -35,7 +33,9 @@ const PrimeTV = () => {
 
   return (
     <div>
-      <h3 className="text-umber">Now search for your random Prime TV Show</h3>
+      <h3 className="text-umber">
+        Now search for your random Prime TV Show or Movie
+      </h3>
       <button
         onClick={handleClick}
         type="submit"
@@ -60,4 +60,4 @@ const PrimeTV = () => {
   );
 };
 
-export default PrimeTV;
+export default NetflixBoth;

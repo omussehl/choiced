@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 
 // We import all the components we need in our app
-import Description from "./components/description";
+import Description from "./components/Home/description";
 import Navbar from "./components/navbar";
-import NetflixSearch from "./components/netflixSearch";
+import NetflixSearch from "./Netflix/netflixSearch";
 import DisneySearch from "./components/Disney/disneySearch";
 import HuluSearch from "./components/Hulu/huluSearch";
 import PrimeSearch from "./components/Prime/primeSearch";
@@ -19,6 +19,10 @@ import PrimeBoth from "./components/Prime/primeBoth";
 import DisneyTV from "./components/Disney/disneyTV";
 import DisneyMovie from "./components/Disney/disneyMovie";
 import DisneyBoth from "./components/Disney/disneyBoth";
+import Test from "./components/Home/testAPI";
+import NetflixTV from "./Netflix/netflixTV";
+import NetflixMovie from "./Netflix/netflixMovie";
+import NetflixBoth from "./Netflix/netflixBoth";
 
 const App = () => {
   return (
@@ -26,22 +30,28 @@ const App = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Description />} />
-          <Route path="/netflix" element={<NetflixSearch />} />
-          <Route path="/hulu" element={<HuluSearch />}>
-            <Route path="/hulu/tv" element={<HuluTV />} />
-            <Route path="/hulu/movie" element={<HuluMovie />} />
-            <Route path="/hulu/both" element={<HuluBoth />} />
-          </Route>
-          <Route path="/disney" element={<DisneySearch />}>
-            <Route path="/disney/tv" element={<DisneyTV />} />
-            <Route path="/disney/movie" element={<DisneyMovie />} />
-            <Route path="/disney/both" element={<DisneyBoth />} />
-          </Route>
-          <Route path="/prime" element={<PrimeSearch />}>
-            <Route path="/prime/tv" element={<PrimeTV />} />
-            <Route path="/prime/movie" element={<PrimeMovie />} />
-            <Route path="/prime/both" element={<PrimeBoth />} />
+          <Route path="/" element={<Description />}>
+            <Route path="/netflix" element={<NetflixSearch />}>
+              <Route path="/netflix/tv" element={<NetflixTV />} />
+              <Route path="/netflix/movie" element={<NetflixMovie />} />
+              <Route path="/netflix/both" element={<NetflixBoth />} />
+            </Route>
+            <Route path="/hulu" element={<HuluSearch />}>
+              <Route path="/hulu/tv" element={<HuluTV />} />
+              <Route path="/hulu/movie" element={<HuluMovie />} />
+              <Route path="/hulu/both" element={<HuluBoth />} />
+            </Route>
+            <Route path="/disney" element={<DisneySearch />}>
+              <Route path="/disney/tv" element={<DisneyTV />} />
+              <Route path="/disney/movie" element={<DisneyMovie />} />
+              <Route path="/disney/both" element={<DisneyBoth />} />
+            </Route>
+            <Route path="/prime" element={<PrimeSearch />}>
+              <Route path="/prime/tv" element={<PrimeTV />} />
+              <Route path="/prime/movie" element={<PrimeMovie />} />
+              <Route path="/prime/both" element={<PrimeBoth />} />
+            </Route>
+            <Route path="/test" element={<Test />} />
           </Route>
         </Routes>
       </Router>

@@ -13,6 +13,8 @@ const {
   getDisneyTV,
   getPrimeMovie,
   getPrimeTV,
+  getNetflixTV,
+  getNetflixMovie,
 } = require("./mongoose");
 
 // cors restricts requests from unknown locations - server accepts requests from this location (frontend)
@@ -26,6 +28,8 @@ app.use(bodyParser.json());
 
 // netflix
 app.get("/netflix", getNetflixMedia);
+app.get("/netflix/movie", getNetflixMovie);
+app.get("/netflix/tv", getNetflixTV);
 // hulu
 app.get("/hulu", getHuluMedia);
 app.get("/hulu/movie", getHuluMovie);

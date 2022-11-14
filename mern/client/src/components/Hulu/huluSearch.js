@@ -1,6 +1,6 @@
 // useState is a hook, and we use curly braces to destructure it
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
 const HuluSearch = () => {
   return (
@@ -10,15 +10,36 @@ const HuluSearch = () => {
       <h3 className="text-umber">Type</h3>
       <i>Please select from the following:</i>
       <div>
-        <li className="text-umber hover:text-sage ">
-          <a href="/hulu/movie">Movie</a>
-        </li>
-        <li className="text-umber hover:text-sage ">
-          <a href="/hulu/tv">TV Show</a>
-        </li>
-        <li className="text-umber hover:text-sage ">
-          <a href="/hulu/both">Both</a>
-        </li>
+        <NavLink
+          to="/hulu/tv"
+          className={({ isActive }) =>
+            isActive
+              ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              : "link bg-white text-umber hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+          }
+        >
+          TV Shows
+        </NavLink>
+        <NavLink
+          to="/hulu/movie"
+          className={({ isActive }) =>
+            isActive
+              ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              : "link  bg-white text-umber border-cyan-700 hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+          }
+        >
+          Movie
+        </NavLink>
+        <NavLink
+          to="/hulu/both"
+          className={({ isActive }) =>
+            isActive
+              ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              : "link  bg-white text-umber hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+          }
+        >
+          Both
+        </NavLink>
       </div>
 
       <Outlet />

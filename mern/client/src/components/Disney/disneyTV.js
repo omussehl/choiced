@@ -35,7 +35,7 @@ const DisneyTV = () => {
 
   return (
     <div>
-      <h3 className="text-umber">Now search for your random Disney+ TV show</h3>
+      <h3 className="text-umber">Now search for your random Disney+ TV Show</h3>
       <button
         onClick={handleClick}
         type="submit"

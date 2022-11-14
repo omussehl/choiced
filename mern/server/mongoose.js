@@ -19,7 +19,22 @@ mongoose
 // These are get request for the data
 // Netflix functions:
 const getNetflixMedia = async (req, res, next) => {
-  const document = await Netflix.find();
+  // Get the count of all users
+  const count = await Netflix.countDocuments();
+  const random = Math.floor(Math.random() * count);
+  const document = await Netflix.findOne().skip(random);
+
+  res.json(document);
+};
+
+const getNetflixMovie = async (req, res, next) => {
+  const document = await Netflix.find({ type: "Movie" });
+
+  res.json(document);
+};
+
+const getNetflixTV = async (req, res, next) => {
+  const document = await Netflix.find({ type: "TV Show" });
 
   res.json(document);
 };
@@ -104,3 +119,5 @@ exports.getHuluMovie = getHuluMovie;
 exports.getHuluTV = getHuluTV;
 
 exports.getNetflixMedia = getNetflixMedia;
+exports.getNetflixMovie = getNetflixMovie;
+exports.getNetflixTV = getNetflixTV;

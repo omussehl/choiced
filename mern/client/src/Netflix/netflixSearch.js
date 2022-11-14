@@ -2,16 +2,16 @@
 import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 
-const DisneySearch = () => {
+const NetflixSearch = () => {
   return (
     <div className="p-3">
-      <h2 className="text-umber">Disney+</h2>
-      <p>The page searches Disney+ TV Shows and Movies!</p>
+      <h2 className="text-umber">Netflix</h2>
+      <p>The page searches Netflix TV Shows and Movies!</p>
       <h3 className="text-umber">Type</h3>
       <i>Please select from the following:</i>
       <div>
         <NavLink
-          to="/disney/tv"
+          to="/netflix/tv"
           className={({ isActive }) =>
             isActive
               ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
@@ -21,7 +21,7 @@ const DisneySearch = () => {
           TV Shows
         </NavLink>
         <NavLink
-          to="/disney/movie"
+          to="/netflix/movie"
           className={({ isActive }) =>
             isActive
               ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
@@ -31,7 +31,7 @@ const DisneySearch = () => {
           Movie
         </NavLink>
         <NavLink
-          to="/disney/both"
+          to="/netflix/both"
           className={({ isActive }) =>
             isActive
               ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
@@ -47,4 +47,4 @@ const DisneySearch = () => {
   );
 };
 
-export default DisneySearch;
+export default NetflixSearch;

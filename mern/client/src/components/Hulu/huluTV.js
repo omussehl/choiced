@@ -35,7 +35,7 @@ const HuluTV = () => {
 
   return (
     <div>
-      <h3 className="text-umber">Now search for your random Hulu TV show</h3>
+      <h3 className="text-umber">Now search for your random Hulu TV Show</h3>
       <button
         onClick={handleClick}
         type="submit"
