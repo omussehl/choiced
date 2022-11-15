@@ -14,6 +14,7 @@ const DisneyBoth = () => {
       })
       .then((data) => {
         console.log(data);
+
         setMedia({
           title: data.title,
           type: data.type,
