@@ -26,8 +26,8 @@ const Description = () => {
             to="/netflix"
             className={({ isActive }) =>
               isActive
-                ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-                : "link bg-white text-umber hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                ? "link-active bg-netflix text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                : "link bg-white text-umber hover:bg-netflix hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
             }
           >
             Netflix
@@ -36,8 +36,8 @@ const Description = () => {
             to="/hulu"
             className={({ isActive }) =>
               isActive
-                ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-                : "link  bg-white text-umber border-cyan-700 hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                ? "link-active bg-hulu text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                : "link bg-white text-umber hover:bg-hulu hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
             }
           >
             Hulu
@@ -46,8 +46,8 @@ const Description = () => {
             to="/disney"
             className={({ isActive }) =>
               isActive
-                ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-                : "link bg-white text-umber hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                ? "link-active bg-disney text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                : "link bg-white text-umber hover:bg-disney hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
             }
           >
             Disney+
@@ -56,8 +56,8 @@ const Description = () => {
             to="/prime"
             className={({ isActive }) =>
               isActive
-                ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-                : "link  bg-white text-umber border-cyan-700 hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                ? "link-active bg-prime text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                : "link bg-white text-umber hover:bg-prime hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
             }
           >
             Prime Video
@@ -66,11 +66,11 @@ const Description = () => {
             to="/test"
             className={({ isActive }) =>
               isActive
-                ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-                : "link bg-white text-umber hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                ? "link-active bg-umber text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                : "link bg-white text-umber hover:bg-umber hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
             }
           >
-            All services
+            All Services
           </NavLink>
         </div>
       </div>

@@ -4,18 +4,18 @@ import { Outlet, NavLink } from "react-router-dom";
 
 const DisneySearch = () => {
   return (
-    <div className="p-3">
-      <h2 className="text-umber">Disney+</h2>
+    <div className="mt-5 shadow-md rounded-md p-3 bg-white">
+      <h1 className="text-disney">Disney+</h1>
       <p>The page searches Disney+ TV Shows and Movies!</p>
       <h3 className="text-umber">Type</h3>
       <i>Please select from the following:</i>
-      <div>
+      <div className="mt-2 mb-2">
         <NavLink
           to="/disney/tv"
           className={({ isActive }) =>
             isActive
-              ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-              : "link bg-white text-umber hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              ? "link-active bg-disney text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              : "link shadow-md bg-white text-umber hover:bg-disney hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
           }
         >
           TV Shows
@@ -24,8 +24,8 @@ const DisneySearch = () => {
           to="/disney/movie"
           className={({ isActive }) =>
             isActive
-              ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-              : "link  bg-white text-umber border-cyan-700 hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              ? "link-active bg-disney text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              : "link shadow-md bg-white text-umber hover:bg-disney hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
           }
         >
           Movie
@@ -34,8 +34,8 @@ const DisneySearch = () => {
           to="/disney/both"
           className={({ isActive }) =>
             isActive
-              ? "link-active bg-sage text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-              : "link  bg-white text-umber hover:bg-sage hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              ? "link-active bg-disney text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+              : "link shadow-md bg-white text-umber hover:bg-disney hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
           }
         >
           Both

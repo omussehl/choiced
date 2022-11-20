@@ -39,13 +39,13 @@ const NetflixTV = () => {
       <button
         onClick={handleClick}
         type="submit"
-        className="bg-rmetalic p-2 rounded-md text-white mb-2"
+        className="bg-netflix p-2 rounded-md text-white mb-2"
       >
         Search
       </button>
       <div role="textbox">
         {!isEmpty(media) ? (
-          <p className="shadow-md rounded-md p-3 bg-white">
+          <p className="shadow-lg rounded-md p-3 bg-cultured">
             Your random result is: <b>{media.title}</b>
             <br />
             {media.title} is a {media.type} that came out in {media.releaseYear}
