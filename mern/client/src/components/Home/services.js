@@ -3,16 +3,9 @@ import React, { useState, Fragment } from "react";
 import { isEmpty } from "lodash";
 import axios from "axios";
 import Select from "react-select";
-import {
-  Radio,
-  Tabs,
-  TabsHeader,
-  TabsBody,
-  Tab,
-  TabPanel,
-} from "@material-tailwind/react";
+import { Radio } from "@material-tailwind/react";
 
-const Services = [
+const Streaming = [
   { value: 1, label: "Netflix", title: "netflix" },
   { value: 2, label: "Hulu", title: "hulu" },
   { value: 3, label: "Disney+", title: "disney" },
@@ -32,40 +25,46 @@ const Type = [
 ];
 
 const Ratings = [
+  { value: 0, label: "N/A", title: "0" },
   { value: 1, label: "> 6", title: "60" },
   { value: 2, label: "> 7", title: "70" },
   { value: 3, label: "> 8", title: "80" },
-  { value: 4, label: "> 9", title: "90" },
+  { value: 4, label: "> 8.5", title: "85" },
   { value: 5, label: "> 9.5", title: "95" },
 ];
 
-const Test = () => {
+const Services = () => {
   // this is the initial value
 
   let imdbRating = 50;
   let genre = "";
+
+  const [services, setServices] = useState("netflix");
+  const [type, setType] = useState("movie");
+  const [minRating, setMinRating] = useState("0");
+  const [ranPage, setRandomPage] = useState("1");
 
   const options = {
     method: "GET",
     url: "https://streaming-availability.p.rapidapi.com/search/ultra",
     params: {
       country: "us",
-      services: "hulu",
+      services: services,
       // this is movie or series
-      type: "movie",
+      type: type,
       order_by: "year",
       // year min can be changed
       year_min: "1980",
       // year max can be changed and cannot be smaller than or equal to min
-      year_max: "2022",
+      year_max: "2023",
       // this value is changed in axios request
-      page: "1",
+      page: ranPage,
       genres: "",
       genres_relation: "or",
       desc: "true",
       language: "en",
       // this can be changed
-      min_imdb_rating: "70",
+      min_imdb_rating: minRating,
       max_imdb_rating: "100",
       // maybe change this but unsure if needed
       min_imdb_vote_count: "100",
@@ -84,9 +83,12 @@ const Test = () => {
       .then(function (response) {
         // this needs to change the page number to a randomized value of the total number of page numbers
         const totalPages = response.data.total_pages;
-        const randomPage = Math.floor(Math.random() * totalPages);
-        options.params.page = randomPage.toString();
-        console.log(randomPage);
+        const randomPage = Math.floor(Math.random() * totalPages) + 1;
+        setRandomPage(randomPage.toString());
+        console.log(
+          "\n",
+          "FIRST CONSOLE - random page number: " + randomPage + "/" + totalPages
+        );
       })
       .catch(function (error) {
         console.error(error);
@@ -98,13 +100,17 @@ const Test = () => {
         const randomCount = Math.floor(
           Math.random() * response.data.results.length
         );
-        console.log(response.data.results.length);
-        console.log(response.data.results[randomCount]);
+        console.log(
+          "Array Length: " +
+            randomCount +
+            "/" +
+            (response.data.results.length - 1)
+        );
+        // console.log(response.data.results[randomCount]);
         setMedia(response.data.results[randomCount]);
         imdbRating = response.data.results[randomCount].imdbRating;
-        console.log(imdbRating);
         genre = response.data.results[randomCount].genres.toString();
-        console.log(genre);
+        console.log("Genre Numbers: " + genre);
       })
       .catch(function (error) {
         console.error(error);
@@ -116,7 +122,7 @@ const Test = () => {
     console.log(genre);
     options.params.genres = genre;
     options.params.min_imdb_rating = (imdbRating - 7).toString();
-    options.params.max_imdb_rating = (imdbRating + 7).toString();
+    options.params.max_imdb_rating = (imdbRating + 8).toString();
     console.log(options.params.max_imdb_rating);
 
     await axios
@@ -145,25 +151,24 @@ const Test = () => {
       });
   };
 
-  const [selectedService, setSelectedService] = useState(null);
-
   const setService = (e) => {
-    setSelectedService(
-      Array.isArray(e) ? e.map((service) => service.title + ",") : []
-    );
-    // removes the final comma at the end, still not changing actual values tho
-    // const selections = selectedOptions.substring(0, selectedOptions.length - 1);
-    // options.params.services = selections;
+    let searchString = "";
+    if (Array.isArray(e)) {
+      e.forEach((service, index) => {
+        if (index === 0) {
+          searchString += service.title;
+        } else {
+          searchString += "," + service.title;
+        }
+      });
+    }
+
+    setServices(searchString);
+    console.log(searchString);
   };
 
-  const [selectedRating, setSelectedRating] = useState(null);
-
   const setRating = (e) => {
-    setSelectedRating(
-      Array.isArray(e) ? e.map((service) => service.title + ",") : []
-    );
-    // need to get this to change the rating
-    // options.params.min_imdb_rating = selectedRating;
+    setMinRating(e.title);
   };
 
   return (
@@ -173,9 +178,14 @@ const Test = () => {
       <div className="mx-auto">
         <div className="flex flex-wrap items-center lg:justify-between justify-center">
           <div className=" px-2	">
-            <Select options={Services} onChange={setService} isMulti />
+            {/* isMulti */}
+            <Select
+              options={Streaming}
+              onChange={setService}
+              isMulti
+              defaultValue={Streaming[0]}
+            />
           </div>
-          {selectedService}
         </div>
       </div>
       <h3 className="text-umber">Type</h3>
@@ -186,13 +196,25 @@ const Test = () => {
         </div>
       </div>
       <h3 className="text-umber">Year</h3>
+      <input
+        type="number"
+        placeholder="Year..."
+        min={1950}
+        max={2023}
+        className="border border-umber rounded-md"
+      />
       <p>beginning year, end year</p>
       <h3 className="text-umber">IMDB Rating</h3>
       <div className="mx-auto">
         <div className="flex flex-wrap items-center lg:justify-between justify-center">
           <div className=" px-2	">
-            <Select options={Ratings} onChange={setRating} />
+            <Select
+              options={Ratings}
+              onChange={setRating}
+              defaultValue={Ratings[0]}
+            />
           </div>
+          {minRating}
         </div>
       </div>
 
@@ -234,11 +256,11 @@ const Test = () => {
             </button>
           </p>
         ) : (
-          <p></p>
+          <p>Please complete all of the above fields</p>
         )}
       </div>
     </div>
   );
 };
 
-export default Test;
+export default Services;

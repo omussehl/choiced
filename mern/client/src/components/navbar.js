@@ -84,6 +84,16 @@ export default function Navbar() {
                     >
                       Prime Video
                     </NavLink>
+                    <NavLink
+                      to="/services"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "link-active bg-umber text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                          : "link text-cultured hover:bg-umber hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                      }
+                    >
+                      All Services
+                    </NavLink>
                   </div>
                 </div>
               </div>

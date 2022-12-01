@@ -19,7 +19,7 @@ import PrimeBoth from "./components/Prime/primeBoth";
 import DisneyTV from "./components/Disney/disneyTV";
 import DisneyMovie from "./components/Disney/disneyMovie";
 import DisneyBoth from "./components/Disney/disneyBoth";
-import Test from "./components/Home/testAPI";
+import Services from "./components/Home/services";
 import NetflixTV from "./Netflix/netflixTV";
 import NetflixMovie from "./Netflix/netflixMovie";
 import NetflixBoth from "./Netflix/netflixBoth";
@@ -51,7 +51,7 @@ const App = () => {
               <Route path="/prime/movie" element={<PrimeMovie />} />
               <Route path="/prime/both" element={<PrimeBoth />} />
             </Route>
-            <Route path="/test" element={<Test />} />
+            <Route path="/services" element={<Services />} />
           </Route>
         </Routes>
       </Router>

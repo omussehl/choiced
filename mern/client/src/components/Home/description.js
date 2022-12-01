@@ -63,7 +63,7 @@ const Description = () => {
             Prime Video
           </NavLink>
           <NavLink
-            to="/test"
+            to="/services"
             className={({ isActive }) =>
               isActive
                 ? "link-active bg-umber text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
