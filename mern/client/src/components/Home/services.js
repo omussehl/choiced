@@ -77,7 +77,10 @@ const Services = () => {
       max_imdb_vote_count: "1000000",
       output_language: "en",
     },
-    headers: {},
+    headers: {
+      "X-RapidAPI-Key": "48b6118395msh859e02fcc8842abp140278jsn4060ba8d6df9",
+      "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
+    },
   };
 
   // this is the random media
@@ -180,7 +183,10 @@ const Services = () => {
       max_imdb_vote_count: "1000000",
       output_language: "en",
     },
-    headers: {},
+    headers: {
+      "X-RapidAPI-Key": "48b6118395msh859e02fcc8842abp140278jsn4060ba8d6df9",
+      "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
+    },
   };
 
   const doFirst = () => {

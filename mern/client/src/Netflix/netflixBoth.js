@@ -34,7 +34,7 @@ const NetflixBoth = () => {
   return (
     <div>
       <h3 className="text-umber">
-        Now search for your random Prime TV Show or Movie
+        Now search for your random Netflix TV Show or Movie
       </h3>
       <button
         onClick={handleClick}
