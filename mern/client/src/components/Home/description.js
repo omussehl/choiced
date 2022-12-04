@@ -23,6 +23,16 @@ const Description = () => {
         </i>
         <div className="mt-3">
           <NavLink
+            to="/services"
+            className={({ isActive }) =>
+              isActive
+                ? "link-active bg-umber text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+                : "link bg-white text-umber hover:bg-umber hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
+            }
+          >
+            All Services
+          </NavLink>
+          <NavLink
             to="/netflix"
             className={({ isActive }) =>
               isActive
@@ -61,16 +71,6 @@ const Description = () => {
             }
           >
             Prime Video
-          </NavLink>
-          <NavLink
-            to="/services"
-            className={({ isActive }) =>
-              isActive
-                ? "link-active bg-umber text-cultured hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-                : "link bg-white text-umber hover:bg-umber hover:text-cultured px-3 py-2 rounded-md text-sm font-medium no-underline m-1"
-            }
-          >
-            All Services
           </NavLink>
         </div>
       </div>

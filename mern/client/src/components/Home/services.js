@@ -1,4 +1,3 @@
-// useState is a hook, and we use curly braces to destructure it
 import React, { useState } from "react";
 import { isEmpty } from "lodash";
 import axios from "axios";
@@ -16,6 +15,18 @@ const Streaming = [
   { value: 9, label: "Showtime", title: "showtime" },
   { value: 10, label: "Apple", title: "apple" },
   { value: 11, label: "Prime", title: "prime" },
+];
+
+const Year = [
+  { value: 0, label: "N/A", title: "0" },
+  { value: 1, label: "1950", title: "1950" },
+  { value: 2, label: "1960", title: "1960" },
+  { value: 3, label: "1970", title: "1970" },
+  { value: 4, label: "1980", title: "1980" },
+  { value: 5, label: "1990", title: "1990" },
+  { value: 6, label: "2000", title: "2000" },
+  { value: 7, label: "2010", title: "2010" },
+  { value: 8, label: "2020", title: "2020" },
 ];
 
 const Ratings = [
@@ -36,9 +47,8 @@ const Services = () => {
   const [type, setType] = useState("movie");
   const [minRating, setMinRating] = useState("0");
   const [ranPage, setRandomPage] = useState("1");
-  // gets value of media that will be used for the algorithm - not used in options
-  const [mediaService, setMediaService] = useState("1");
   const [title, setTitle] = useState("");
+  const [yearMin, setYearMin] = useState("0");
 
   const options = {
     method: "GET",
@@ -50,7 +60,7 @@ const Services = () => {
       type: type,
       order_by: "year",
       // year min can be changed
-      year_min: "1980",
+      year_min: yearMin,
       // year max can be changed and cannot be smaller than or equal to min
       year_max: "2023",
       // this value is changed in axios request
@@ -63,7 +73,7 @@ const Services = () => {
       min_imdb_rating: minRating,
       max_imdb_rating: "100",
       // maybe change this but unsure if needed
-      min_imdb_vote_count: "100",
+      min_imdb_vote_count: "1",
       max_imdb_vote_count: "1000000",
       output_language: "en",
     },
@@ -75,11 +85,15 @@ const Services = () => {
   const [totalPageNumber, setTotalPageNumber] = useState("");
   const [arrayLength, setArrayLength] = useState("");
   const [ranPage2, setRandomPage2] = useState("1");
+  const [similarMedia, setSimilarMedia] = useState(null);
+  const [similarMedia2, setSimilarMedia2] = useState(null);
+  const [similarMedia3, setSimilarMedia3] = useState(null);
+  const [similarMedia4, setSimilarMedia4] = useState(null);
 
   const numberOfResults = (pages, length) => {
     let num = 0;
     if (pages > 1) {
-      num += pages * 25;
+      num += (pages - 1) * 25;
       num.toString();
       num += "+";
     } else {
@@ -94,22 +108,22 @@ const Services = () => {
     await axios
       .request(options)
       .then(function (response) {
+        setSimilarMedia(null);
         // this needs to change the page number to a randomized value of the total number of page numbers
         const totalPages = response.data.total_pages;
         setTotalPageNumber(totalPages);
-
         const randomPage = Math.floor(Math.random() * totalPages) + 1;
-        setRandomPage(randomPage.toString());
         console.log(
           "--- New Search ---",
           "\n",
           "Random page number: " + randomPage + "/" + totalPages
         );
-        // resets the genre if other function changed value
+        setRandomPage(randomPage.toString());
       })
       .catch(function (error) {
         console.error(error);
       });
+
     axios
       .request(options)
       .then(function (response) {
@@ -123,28 +137,13 @@ const Services = () => {
             response.data.results.length
         );
         setArrayLength(response.data.results.length);
-        setMediaService(
-          Object.keys(
-            response.data.results[randomCount].streamingInfo
-          ).toString()
-        );
         setMedia(response.data.results[randomCount]);
         console.log(response.data.results[randomCount]);
-
         let rating = response.data.results[randomCount].imdbRating;
         setSimilarRating(rating);
         let genre = response.data.results[randomCount].genres.toString();
         console.log("Genre Numbers: " + genre);
         setGenre(genre);
-        // need to reset random page to 1
-        // setRandomPage("1");
-
-        console.log(
-          "total page num: " +
-            response.data.total_pages +
-            " and length of array is: " +
-            response.data.results.length
-        );
         setTitle(response.data.results[randomCount].title);
       })
       .catch(function (error) {
@@ -164,20 +163,20 @@ const Services = () => {
       type: type,
       order_by: "year",
       // year min can be changed
-      year_min: "1980",
+      year_min: yearMin,
       // year max can be changed and cannot be smaller than or equal to min
       year_max: "2023",
       // this value is changed in axios request
       page: ranPage2,
       genres: genre,
       genres_relation: "or",
-      desc: "true",
+      desc: "false",
       language: "en",
       // this can be changed
       min_imdb_rating: "0",
       max_imdb_rating: "100",
       // maybe change this but unsure if needed
-      min_imdb_vote_count: "100",
+      min_imdb_vote_count: "1",
       max_imdb_vote_count: "1000000",
       output_language: "en",
     },
@@ -189,7 +188,11 @@ const Services = () => {
     console.log("This is the genre numbers from previous search: " + genre);
     console.log("original rating: " + similarRating);
     options2.params.min_imdb_rating = (similarRating - 7).toString();
-    options2.params.max_imdb_rating = (similarRating + 8).toString();
+    if (similarRating + 8 > 100) {
+      options2.params.max_imdb_rating = 100;
+    } else {
+      options2.params.max_imdb_rating = (similarRating + 8).toString();
+    }
     console.log("max rating: " + options2.params.max_imdb_rating);
     console.log("min rating: " + options2.params.min_imdb_rating);
   };
@@ -212,12 +215,17 @@ const Services = () => {
     axios
       .request(options2)
       .then(function (response) {
-        // currently this is 25 but need to get an accurate numnber
-        const randomCount = Math.floor(
-          Math.random() * response.data.results.length
-        );
-        console.log(response.data.results[randomCount]);
-        setMedia(response.data.results[randomCount]);
+        // Shuffle array
+        const shuffled = response.data.results.sort(() => 0.5 - Math.random());
+        // Get sub-array of first n elements after shuffled
+        let selected = shuffled.slice(0, 4);
+        console.log(selected);
+
+        //
+        setSimilarMedia(selected[0]);
+        setSimilarMedia2(selected[1]);
+        setSimilarMedia3(selected[2]);
+        setSimilarMedia4(selected[3]);
       })
       .catch(function (error) {
         console.error(error);
@@ -243,18 +251,24 @@ const Services = () => {
     setType(e.target.value);
   };
 
-  const setRating = (e) => {
+  const pickRating = (e) => {
     setMinRating(e.title);
+  };
+
+  const pickYear = (e) => {
+    setYearMin(e.title);
   };
 
   return (
     <div className="mt-5 shadow-md rounded-md p-3 bg-white">
-      <h1 className="text-umber">Movie of the Night - API</h1>
-      <h3 className="text-umber">Select your service(s)</h3>
+      <h1 className="text-umber">Choiced</h1>
+      <h3 className="text-umber">
+        Select your service(s)<i>*</i>
+      </h3>
+
       <div className="mx-auto">
         <div className="flex flex-wrap items-center lg:justify-between justify-center">
           <div className=" px-2	">
-            {/* isMulti */}
             <Select
               options={Streaming}
               onChange={setService}
@@ -287,26 +301,25 @@ const Services = () => {
           </div>
         </div>
       </div>
-      <h3 className="text-umber">Year</h3>
-      <input
-        type="number"
-        placeholder="Year..."
-        min={1950}
-        max={2023}
-        className="border border-umber rounded-md"
-      />
-      <p>beginning year, end year</p>
+      <h3 className="text-umber">Minimum Year</h3>
+      <div className="mx-auto">
+        <div className="flex flex-wrap items-center lg:justify-between justify-center">
+          <div className=" px-2	">
+            <Select options={Year} onChange={pickYear} defaultValue={Year[0]} />
+          </div>
+        </div>
+      </div>
+
       <h3 className="text-umber">IMDB Rating</h3>
       <div className="mx-auto">
         <div className="flex flex-wrap items-center lg:justify-between justify-center">
           <div className=" px-2	">
             <Select
               options={Ratings}
-              onChange={setRating}
+              onChange={pickRating}
               defaultValue={Ratings[0]}
             />
           </div>
-          {minRating}
         </div>
       </div>
 
@@ -324,7 +337,8 @@ const Services = () => {
             {numberOfResults(totalPageNumber, arrayLength)} amount of results.
             <br />
             {media.title} is a {options.params.type} that came out in{" "}
-            {media.year} and is watchable on {mediaService}
+            {media.year} and is watchable on{" "}
+            {Object.keys(media.streamingInfo).toString()}
             {media.steamingInfo}. It has a {media.imdbRating} rating on IMDB.{" "}
             <br />
             About: <i>{media.overview}</i>
@@ -343,13 +357,97 @@ const Services = () => {
             <button
               onClick={handleClickAgain}
               type="submit"
-              className="bg-rmetalic p-2 rounded-md text-white mb-2 mt-2"
+              className="bg-bone p-2 rounded-md text-umber mb-2 mt-2"
             >
-              Other Similar Titles to {title}
+              Similar to: {title}
             </button>
           </p>
         ) : (
-          <p>Please complete all of the above fields</p>
+          <p></p>
+        )}
+      </div>
+      <div>
+        {!isEmpty(similarMedia) ? (
+          <div className="grid gap-2 lg:grid-cols-4 mt-3 mb-3">
+            <div className="w-full rounded-lg shadow-md lg:max-w-sm bg-bone">
+              <div className="p-4">
+                <h4 className="text-xl font-semibold text-umber">
+                  {similarMedia.title}
+                </h4>
+                <p className="mb-2 leading-normal">
+                  It is a {options.params.type} that came out in{" "}
+                  {similarMedia.year} and is watchable on{" "}
+                  {Object.keys(similarMedia.streamingInfo).toString()}. It has a{" "}
+                  {similarMedia.imdbRating} rating on IMDB. <br />
+                  About: <i>{similarMedia.overview}</i>
+                </p>
+              </div>
+              <img
+                className="w-fit h-48 mb-2 ml-3 "
+                src={similarMedia.posterURLs[92]}
+                alt={similarMedia.tagline}
+              />
+            </div>
+            <div className="w-full rounded-lg shadow-md lg:max-w-sm bg-bone">
+              <div className="p-4">
+                <h4 className="text-xl font-semibold text-umber ">
+                  {similarMedia2.title}
+                </h4>
+                <p className="mb-2 leading-normal">
+                  It is a {options.params.type} that came out in{" "}
+                  {similarMedia2.year} and is watchable on{" "}
+                  {Object.keys(similarMedia2.streamingInfo).toString()}. It has
+                  a {similarMedia2.imdbRating} rating on IMDB. <br />
+                  About: <i>{similarMedia2.overview}</i>
+                </p>
+              </div>
+              <img
+                className="w-fit h-48 mb-2 ml-3 "
+                src={similarMedia2.posterURLs[92]}
+                alt={similarMedia2.tagline}
+              />
+            </div>
+            <div className="w-full rounded-lg shadow-md lg:max-w-sm bg-bone">
+              <div className="p-4">
+                <h4 className="text-xl font-semibold text-umber">
+                  {similarMedia3.title}
+                </h4>
+                <p className="mb-2 leading-normal">
+                  It is a {options.params.type} that came out in{" "}
+                  {similarMedia3.year} and is watchable on{" "}
+                  {Object.keys(similarMedia3.streamingInfo).toString()}. It has
+                  a {similarMedia3.imdbRating} rating on IMDB. <br />
+                  About: <i>{similarMedia3.overview}</i>
+                </p>
+              </div>
+              <img
+                className="w-fit h-48 mb-2 ml-3 "
+                src={similarMedia3.posterURLs[92]}
+                alt={similarMedia3.tagline}
+              />
+            </div>
+            <div className="w-full rounded-lg shadow-md lg:max-w-sm bg-bone">
+              <div className="p-4">
+                <h4 className="text-xl font-semibold text-umber">
+                  {similarMedia4.title}
+                </h4>
+                <p className="mb-2 leading-normal">
+                  It is a {options.params.type} that came out in{" "}
+                  {similarMedia4.year} and is watchable on{" "}
+                  {Object.keys(similarMedia4.streamingInfo).toString()}. It has
+                  a {similarMedia4.imdbRating} rating on IMDB. <br />
+                  About: <i>{similarMedia4.overview}</i>
+                </p>
+              </div>
+              <img
+                className="w-fit h-48 mb-2 ml-3 "
+                src={similarMedia4.posterURLs[92]}
+                alt={similarMedia4.tagline}
+              />
+            </div>
+          </div>
+        ) : (
+          <p></p>
         )}
       </div>
     </div>

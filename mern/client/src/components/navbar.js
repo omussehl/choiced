@@ -1,12 +1,6 @@
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { NavLink } from "react-router-dom";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-rmetalic">
@@ -44,6 +38,16 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
+                    <NavLink
+                      to="/services"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "link-active bg-umber text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                          : "link text-cultured hover:bg-umber hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
+                      }
+                    >
+                      All Services
+                    </NavLink>
                     <NavLink
                       to="/netflix"
                       className={({ isActive }) =>
@@ -83,16 +87,6 @@ export default function Navbar() {
                       }
                     >
                       Prime Video
-                    </NavLink>
-                    <NavLink
-                      to="/services"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "link-active bg-umber text-cultured hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
-                          : "link text-cultured hover:bg-umber hover:text-bone px-3 py-2 rounded-md text-sm font-medium no-underline"
-                      }
-                    >
-                      All Services
                     </NavLink>
                   </div>
                 </div>
