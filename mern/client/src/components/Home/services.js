@@ -8,13 +8,12 @@ const Streaming = [
   { value: 2, label: "Hulu", title: "hulu" },
   { value: 3, label: "Disney+", title: "disney" },
   { value: 4, label: "HBO", title: "hbo" },
-  { value: 5, label: "Hulu", title: "hulu" },
+  { value: 5, label: "Prime Video", title: "prime" },
   { value: 6, label: "Peacock", title: "peacock" },
   { value: 7, label: "Paramount+", title: "paramount" },
   { value: 8, label: "Starz", title: "starz" },
   { value: 9, label: "Showtime", title: "showtime" },
   { value: 10, label: "Apple", title: "apple" },
-  { value: 11, label: "Prime", title: "prime" },
 ];
 
 const Year = [
